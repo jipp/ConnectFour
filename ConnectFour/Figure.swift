@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  Figure.swift
 //  ConnectFour
 //
 //  Created by Wolfgang Keller on 27.05.16.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-var field: Field?
-
-field = Field()
-field!.show()
-
+enum Figure: Int {
+    case X = 1
+    case O = -1
+    case empty = 0
+}

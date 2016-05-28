@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  Status.swift
 //  ConnectFour
 //
 //  Created by Wolfgang Keller on 27.05.16.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-var field: Field?
-
-field = Field()
-field!.show()
-
+enum Status {
+    case won
+    case draw
+    case ongoing
+}
