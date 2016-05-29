@@ -9,7 +9,27 @@
 import Foundation
 
 var field: Field?
+var player1: PlayerClass = PlayerFactory.create(PlayerEnum.Human, figure: Figure.X)!
+var player2: PlayerClass = PlayerFactory.create(PlayerEnum.Human, figure: Figure.O)!
+var players: [PlayerClass] = [player1, player2]
+var x: Int
 
-field = Field()
-field!.show()
-
+while true {
+    field = Field()
+    field!.show()
+    gameLoop: for i in 0...field!.getSize()-1 {
+        x = players[i%2].getMove(field!)
+        field!.set(x, figure: players[i%2].figure)
+        field!.show()
+        switch field!.getStatus(x) {
+        case Status.won:
+            print("\(players[i%2].figure) won\n\n")
+            break gameLoop
+        case Status.draw:
+            print("Draw\n\n")
+            break gameLoop
+        default:
+            break
+        }
+    }
+}

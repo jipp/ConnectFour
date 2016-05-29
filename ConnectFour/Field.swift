@@ -14,8 +14,8 @@ class Field {
     var y: Int
     
     init() {
-        self.x = 6
-        self.y = 7
+        self.x = 7
+        self.y = 6
         content = Array(count: self.x, repeatedValue: Array(count: self.y, repeatedValue: Figure.empty))
     }
     
@@ -38,12 +38,12 @@ class Field {
     }
     
     func show() {
-        for i in 0...self.x-1 {
-            for j in 0...self.y-1 {
-                if (j <= self.y - 1) {
+        for y in 0...self.y-1 {
+            for x in 0...self.x-1 {
+                if (x <= self.x - 1) {
                     print("|", terminator:"")
                 }
-                switch content[i][j] {
+                switch content[x][self.y - y - 1] {
                 case .X:
                     print(Figure.X, terminator:"")
                 case .O:
@@ -53,19 +53,24 @@ class Field {
                 }
             }
             print("|")
-            for _ in 0...self.y-1 {
-                print("--", terminator:"")
-            }
-            print("-")
         }
+        for _ in 0...self.x-1 {
+            print("--", terminator:"")
+        }
+        print("-")
     }
     
     func allowedMove(x: Int) -> Bool {
+        if (x >= 0) && (x < self.x) {
+            if content[x][self.y - 1] == Figure.empty {
+                return true
+            }
+        }
         return false
     }
     
-    func getStatus() -> Status {
-        if won() {
+    func getStatus(x: Int) -> Status {
+        if won(x) {
             return Status.won
         }
         if draw() {
@@ -75,20 +80,129 @@ class Field {
     }
     
     func set(x: Int, figure: Figure) {
+        for y in 0...self.y-1 {
+            if (content[x][y] == Figure.empty) {
+                content[x][y] = figure
+                break
+            }
+        }
     }
     
     func draw() -> Bool {
         for i in 0...self.x-1 {
-            for j in 0...self.y-1 {
-                if (content[i][j] == Figure.empty) {
+                if (content[i][self.y-1] == Figure.empty) {
                     return false
                 }
-            }
         }
         return true
     }
     
-    func won() -> Bool {
+    func getPosition(x: Int) -> Int {
+        var y: Int = 0
+        
+        for i in 0...(self.y-1) {
+            if content[x][self.y - i - 1] != Figure.empty {
+                y = self.y - i - 1
+                break
+            }
+        }
+        return y
+    }
+    
+    func checkHorizontal(x: Int, y: Int) -> Bool {
+        var sum: Int = 0
+
+        for i in -3...0 {
+            for j in 0...3 {
+                if (x+i+j>=0 && x+i+j<self.x) {
+                    sum += content[x+i+j][y].rawValue
+                }
+            }
+            if (abs(sum) == 4) {
+                return true
+            }
+            sum = 0
+        }
+        
+        return false
+    }
+    
+    func checkVertical(x: Int, y: Int) -> Bool {
+        var sum: Int = 0
+
+        for i in -3...0 {
+            for j in 0...3 {
+                if (y+i+j>=0 && y+i+j<self.y) {
+                    sum += content[x][y+i+j].rawValue
+                }
+            }
+            if (abs(sum) == 4) {
+                return true
+            }
+            sum = 0
+        }
+        return false
+    }
+    
+    func checkSlash(x: Int, y: Int) -> Bool {
+        var sum: Int = 0
+        
+        for i in -3...0 {
+            for j in 0...3 {
+                if (y+i+j>=0 && y+i+j<self.y) {
+                    if (x+i+j>=0 && x+i+j<self.x) {
+                        sum += content[x+i+j][y+i+j].rawValue
+                    }
+                }
+            }
+            if (abs(sum) == 4) {
+                return true
+            }
+            sum = 0
+        }
+        return false
+    }
+
+    func checkBackSlash(x: Int, y: Int) -> Bool {
+        var sum: Int = 0
+        
+        for i in -3...0 {
+            for j in 0...3 {
+                if (y+i-j>=0 && y+i-j<self.y) {
+                    if (x+i+j>=0 && x+i+j<self.x) {
+                        sum += content[x+i+j][y+i-j].rawValue
+                    }
+                }
+            }
+            if (abs(sum) == 4) {
+                return true
+            }
+            sum = 0
+        }
+        return false
+    }
+
+    func won(x: Int) -> Bool {
+        var y: Int = 0
+        
+        y = getPosition(x)
+        
+        if (checkHorizontal(x, y: y)) {
+            return true
+        }
+        
+        if (checkVertical(x, y: y)) {
+            return true
+        }
+        
+        if (checkSlash(x, y: y)) {
+            return true
+        }
+
+        if (checkBackSlash(x, y: y)) {
+            return true
+        }
+
         return false
     }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D16706E1CF9EC780042632E /* PlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16706D1CF9EC780042632E /* PlayerProtocol.swift */; };
+		5D1670701CF9ECB50042632E /* PlayerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16706F1CF9ECB50042632E /* PlayerEnum.swift */; };
+		5D1670721CF9ECDD0042632E /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1670711CF9ECDD0042632E /* PlayerClass.swift */; };
+		5D1670741CF9ED0D0042632E /* PlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1670731CF9ED0D0042632E /* PlayerFactory.swift */; };
+		5D1670761CF9F0BA0042632E /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1670751CF9F0BA0042632E /* Human.swift */; };
 		5DA5AB591CF8F35B008F2085 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5AB581CF8F35B008F2085 /* main.swift */; };
 		5DA5AB601CF8F3FD008F2085 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5AB5F1CF8F3FD008F2085 /* Field.swift */; };
 		5DA5AB621CF8F500008F2085 /* Figure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5AB611CF8F500008F2085 /* Figure.swift */; };
@@ -26,6 +31,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D16706D1CF9EC780042632E /* PlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerProtocol.swift; sourceTree = "<group>"; };
+		5D16706F1CF9ECB50042632E /* PlayerEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEnum.swift; sourceTree = "<group>"; };
+		5D1670711CF9ECDD0042632E /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
+		5D1670731CF9ED0D0042632E /* PlayerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerFactory.swift; sourceTree = "<group>"; };
+		5D1670751CF9F0BA0042632E /* Human.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Human.swift; sourceTree = "<group>"; };
 		5DA5AB551CF8F35B008F2085 /* ConnectFour */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ConnectFour; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DA5AB581CF8F35B008F2085 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5DA5AB5F1CF8F3FD008F2085 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
@@ -64,6 +74,11 @@
 			isa = PBXGroup;
 			children = (
 				5DA5AB581CF8F35B008F2085 /* main.swift */,
+				5D16706D1CF9EC780042632E /* PlayerProtocol.swift */,
+				5D16706F1CF9ECB50042632E /* PlayerEnum.swift */,
+				5D1670711CF9ECDD0042632E /* PlayerClass.swift */,
+				5D1670731CF9ED0D0042632E /* PlayerFactory.swift */,
+				5D1670751CF9F0BA0042632E /* Human.swift */,
 				5DA5AB5F1CF8F3FD008F2085 /* Field.swift */,
 				5DA5AB631CF8F791008F2085 /* Status.swift */,
 				5DA5AB611CF8F500008F2085 /* Figure.swift */,
@@ -130,8 +145,13 @@
 			files = (
 				5DA5AB601CF8F3FD008F2085 /* Field.swift in Sources */,
 				5DA5AB591CF8F35B008F2085 /* main.swift in Sources */,
+				5D16706E1CF9EC780042632E /* PlayerProtocol.swift in Sources */,
+				5D1670741CF9ED0D0042632E /* PlayerFactory.swift in Sources */,
+				5D1670761CF9F0BA0042632E /* Human.swift in Sources */,
+				5D1670721CF9ECDD0042632E /* PlayerClass.swift in Sources */,
 				5DA5AB621CF8F500008F2085 /* Figure.swift in Sources */,
 				5DA5AB641CF8F791008F2085 /* Status.swift in Sources */,
+				5D1670701CF9ECB50042632E /* PlayerEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +273,7 @@
 				5DA5AB5E1CF8F35B008F2085 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
