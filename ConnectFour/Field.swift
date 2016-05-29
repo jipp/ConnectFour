@@ -29,7 +29,7 @@ class Field {
         return y
     }
 
-    func getColummns() -> Int {
+    func getColumns() -> Int {
         return x
     }
 

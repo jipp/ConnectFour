@@ -10,7 +10,7 @@ import Foundation
 
 var field: Field?
 var player1: PlayerClass = PlayerFactory.create(PlayerEnum.Human, figure: Figure.X)!
-var player2: PlayerClass = PlayerFactory.create(PlayerEnum.Human, figure: Figure.O)!
+var player2: PlayerClass = PlayerFactory.create(PlayerEnum.ComputerRandom, figure: Figure.O)!
 var players: [PlayerClass] = [player1, player2]
 var x: Int
 

@@ -12,7 +12,7 @@ class PlayerFactory {
     class func create(playerEnum: PlayerEnum, figure: Figure) -> PlayerClass? {
         switch playerEnum {
         case .Human: return Human(figure: figure)
-//        case .ComputerRandom: return ComputerRandom(figure: figure)
+        case .ComputerRandom: return ComputerRandom(figure: figure)
         default: print("\n> Player not existing\n"); return nil
         }
     }
