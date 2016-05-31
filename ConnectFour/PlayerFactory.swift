@@ -13,6 +13,7 @@ class PlayerFactory {
         switch playerEnum {
         case .Human: return Human(figure: figure)
         case .ComputerRandom: return ComputerRandom(figure: figure)
+        case .ComputerMinMax: return ComputerMinMax(figure: figure)
         default: print("\n> Player not existing\n"); return nil
         }
     }

@@ -11,4 +11,5 @@ import Foundation
 enum PlayerEnum {
     case Human
     case ComputerRandom
+    case ComputerMinMax
 }

@@ -79,13 +79,17 @@ class Field {
         return Status.ongoing
     }
     
-    func set(x: Int, figure: Figure) {
-        for y in 0...self.y-1 {
-            if (content[x][y] == Figure.empty) {
-                content[x][y] = figure
+    func set(x: Int, figure: Figure) -> Int{
+        var y: Int = 0
+        
+        for i in 0...self.y-1 {
+            if (content[x][i] == Figure.empty) {
+                content[x][i] = figure
+                y = i
                 break
             }
         }
+        return y
     }
     
     func draw() -> Bool {
