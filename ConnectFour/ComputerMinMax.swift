@@ -20,7 +20,7 @@ class ComputerMinMax: PlayerClass {
         
         print("\(figure) turn")
         
-        x = maximizingResult(field, depth: 7, alpha: Int.min, beta: Int.max)
+        x = maximizing(field, depth: 7, alpha: Int.min, beta: Int.max)
         
         if debug {
             print("Count: \(count)")
@@ -29,7 +29,7 @@ class ComputerMinMax: PlayerClass {
         return x
     }
     
-    func maximizingResult(field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
+    func maximizing(field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
         var maxValue: Int = alpha
         var value: Int
         var y: Int = 0
