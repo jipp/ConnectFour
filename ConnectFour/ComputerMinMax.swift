@@ -70,7 +70,7 @@ class ComputerMinMax: PlayerClass {
         if (field.won(x)) {
             return  -1 - depth
         }
-        if (field.draw() || depth == 0) {
+        if (field.draw() || depth <= 0) {
             return 0
         }
         
@@ -101,7 +101,7 @@ class ComputerMinMax: PlayerClass {
         if (field.won(x)) {
             return 1 + depth
         }
-        if (field.draw() || depth == 0) {
+        if (field.draw() || depth <= 0) {
             return 0
         }
         
