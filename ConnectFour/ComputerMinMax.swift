@@ -8,7 +8,7 @@
 
 import Foundation
 
-let debug: Bool = true
+let debug: Bool = false
 
 class ComputerMinMax: PlayerClass {
     var count: Int = 0
