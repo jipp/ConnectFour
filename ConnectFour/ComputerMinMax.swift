@@ -8,7 +8,7 @@
 
 import Foundation
 
-let debug: Bool = false
+let debug: Bool = true
 
 class ComputerMinMax: PlayerClass {
     var count: Int = 0
@@ -32,24 +32,25 @@ class ComputerMinMax: PlayerClass {
     func maximizing(field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
         var maxValue: Int = alpha
         var value: Int
+        var x: Int = 0
         var y: Int = 0
         
         move: for i in 0...field.getColumns()-1 {
-                if (field.content[i][field.getRows()-1] == Figure.empty) {
-                    y = field.set(i, figure: figure)
-                    value = minimizing(field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
-                    field.content[i][y] = Figure.empty
-                    if debug {
-                        print(" Position: \(i, y) Value: \(value)")
-                    }
-                    if (value > maxValue) {
-                        maxValue = value
-                        x = i
-                        if (maxValue >= beta) {
-                            break move
-                        }
+            if (field.content[i][field.getRows()-1] == Figure.empty) {
+                y = field.set(i, figure: figure)
+                value = minimizing(field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
+                field.remove(i, y: y)
+                if debug {
+                    print(" Position: \(i, y) Value: \(value)")
+                }
+                if (value > maxValue) {
+                    maxValue = value
+                    x = i
+                    if (maxValue >= beta) {
+                        break move
                     }
                 }
+            }
         }
         
         if debug {
@@ -78,13 +79,13 @@ class ComputerMinMax: PlayerClass {
             if (field.content[i][field.getRows()-1] == Figure.empty) {
                 y = field.set(i, figure: figure)
                 value = minimizing(field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
-                field.content[i][y] = Figure.empty
-                    if (value > maxValue) {
-                        maxValue = value
-                        if (maxValue >= beta) {
-                            break move
-                        }
+                field.remove(i, y: y)
+                if (value > maxValue) {
+                    maxValue = value
+                    if (maxValue >= beta) {
+                        break move
                     }
+                }
             }
         }
         
@@ -95,7 +96,7 @@ class ComputerMinMax: PlayerClass {
         var minValue: Int = Int.max
         var value: Int
         var y: Int = 0
-        
+
         count += 1
         
         if (field.won(x)) {
@@ -108,14 +109,14 @@ class ComputerMinMax: PlayerClass {
         move: for i in 0...field.getColumns()-1 {
             if (field.content[i][field.getRows()-1] == Figure.empty) {
                 y = field.set(i, figure: getOpponent())
-                    value = maximizing(field, x: i, depth: depth-1, alpha: alpha, beta: minValue)
-                field.content[i][y] = Figure.empty
-                    if (value < minValue) {
-                        minValue = value
-                        if (minValue <= alpha) {
-                            break move
-                        }
+                value = maximizing(field, x: i, depth: depth-1, alpha: alpha, beta: minValue)
+                field.remove(i, y: y)
+                if (value < minValue) {
+                    minValue = value
+                    if (minValue <= alpha) {
+                        break move
                     }
+                }
             }
         }
         

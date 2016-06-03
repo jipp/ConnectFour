@@ -13,15 +13,16 @@ var player1: PlayerClass = PlayerFactory.create(PlayerEnum.Human, figure: Figure
 var player2: PlayerClass = PlayerFactory.create(PlayerEnum.ComputerMinMax, figure: Figure.O)!
 var players: [PlayerClass] = [player1, player2]
 var x: Int
+var y: Int
 
 while true {
     field = Field()
     field!.show()
     gameLoop: for i in 0...field!.getSize()-1 {
         x = players[i%2].getMove(field!)
-        field!.set(x, figure: players[i%2].figure)
+        y = field!.set(x, figure: players[i%2].figure)
         field!.show()
-        switch field!.getStatus(x) {
+        switch field!.getStatus(x, y: y) {
         case Status.won:
             print("\(players[i%2].figure) won\n\n")
             break gameLoop

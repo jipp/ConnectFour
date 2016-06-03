@@ -76,16 +76,6 @@ class Field {
         return false
     }
     
-    func getStatus(x: Int) -> Status {
-        if won(x) {
-            return Status.won
-        }
-        if draw() {
-            return Status.draw
-        }
-        return Status.ongoing
-    }
-    
     func set(x: Int, figure: Figure) -> Int{
         var y: Int = 0
         
@@ -99,6 +89,33 @@ class Field {
         return y
     }
     
+    func remove(x: Int) {
+        var y: Int = 0
+        
+        for i in 0...self.y-1 {
+            if (content[x][i] != Figure.empty) {
+                y = i
+            } else {
+                break
+            }
+        }
+        remove(x, y: y)
+    }
+    
+    func remove(x: Int, y: Int) {
+        content[x][y] = Figure.empty
+    }
+
+    func getStatus(x: Int, y: Int) -> Status {
+        if won(x, y: y) {
+            return Status.won
+        }
+        if draw() {
+            return Status.draw
+        }
+        return Status.ongoing
+    }
+    
     func draw() -> Bool {
         for i in 0...self.x-1 {
                 if (content[i][self.y-1] == Figure.empty) {
@@ -108,7 +125,7 @@ class Field {
         return true
     }
     
-    func getPosition(x: Int) -> Int {
+/*    func getPosition(x: Int) -> Int {
         var y: Int = 0
         
         for i in 0...(self.y-1) {
@@ -118,7 +135,7 @@ class Field {
             }
         }
         return y
-    }
+    }*/
     
     func checkHorizontal(x: Int, y: Int) -> Bool {
         var sum: Int = 0
@@ -196,8 +213,17 @@ class Field {
     func won(x: Int) -> Bool {
         var y: Int = 0
         
-        y = getPosition(x)
+        for i in 0...self.y-1 {
+            if content[x][self.y - 1 - i] != Figure.empty {
+                y = self.y - 1 - i
+                break
+            }
+        }
         
+        return won(x, y: y)
+    }
+    
+    func won(x: Int, y: Int) -> Bool {
         if (checkHorizontal(x, y: y)) {
             return true
         }

@@ -10,6 +10,7 @@ import Foundation
 
 class Human: PlayerClass {
     override func getMove(field: Field) ->  (Int) {
+        var x: Int = -1
         var input: String
         
         print("\(figure) turn")
