@@ -175,18 +175,18 @@ class Field {
     func checkSlash(x: Int, y: Int) -> Bool {
         var sum: Int = 0
         
-        for i in -3...0 {
+        for i in 0...3 {
+            sum = 0
             for j in 0...3 {
-                if (y+i+j>=0 && y+i+j<self.y) {
-                    if (x+i+j>=0 && x+i+j<self.x) {
-                        sum += content[x+i+j][y+i+j].rawValue
+                if (x-i+j>=0 && x-i+j<self.x) {
+                    if (y-i+j>=0 && y-i+j<self.y) {
+                        sum += content[x-i+j][y-i+j].rawValue
                     }
                 }
             }
             if (abs(sum) == 4) {
                 return true
             }
-            sum = 0
         }
         return false
     }
@@ -194,18 +194,18 @@ class Field {
     func checkBackSlash(x: Int, y: Int) -> Bool {
         var sum: Int = 0
         
-        for i in -3...0 {
+        for i in 0...3 {
+            sum = 0
             for j in 0...3 {
-                if (y+i-j>=0 && y+i-j<self.y) {
-                    if (x+i+j>=0 && x+i+j<self.x) {
-                        sum += content[x+i+j][y+i-j].rawValue
+                if (x-i+j>=0 && x-i+j<self.x) {
+                    if (y+i-j>=0 && y+i-j<self.y) {
+                        sum += content[x-i+j][y+i-j].rawValue
                     }
                 }
             }
             if (abs(sum) == 4) {
                 return true
             }
-            sum = 0
         }
         return false
     }

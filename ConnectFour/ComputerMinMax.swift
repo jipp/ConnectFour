@@ -8,7 +8,7 @@
 
 import Foundation
 
-let debug: Bool = false
+let debug: Bool = true
 
 class ComputerMinMax: PlayerClass {
     var count: Int = 0
@@ -20,7 +20,7 @@ class ComputerMinMax: PlayerClass {
         
         print("\(figure) turn")
         
-        x = maximizing(field, depth: 10, alpha: Int.min, beta: Int.max)
+        x = maximizing(field, depth: 9, alpha: Int.min, beta: Int.max)
         
         if debug {
             print("Count: \(count)")
