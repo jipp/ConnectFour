@@ -8,12 +8,14 @@
 
 import Foundation
 
-// |1|2|3|4|5|6|7|8|    |0,6|1,6|2,6|3,6|4,6|5,6|6,6|7,6|
-// | | | | | | | | |    |   |   |   |   |   |   |   |   |
-// | | | | | | | | |    |   |   |   |   |   |   |   |   |
-// | | | | | | | | |    |   |   |   |   |   |   |   |   |
-// | | | | | | | | |    |0,0|1,0|2,0|3,0|4,0|5,0|6,0|7,0|
-// -----------------    ---------------------------------
+// |1|2|3|4|5|6|7|    |0,6|1,6|2,6|3,6|4,6|5,6|6,6|
+// | | | | | | | |    |0,5|   |   |   |   |   |   |
+// | | | | | | | |    |0,4|   |   |   |   |   |   |
+// | | | | | | | |    |0,3|   |   |   |   |   |   |
+// | | | | | | | |    |0,2|   |   |   |   |   |   |
+// | | | | | | | |    |0,1|   |   |   |   |   |   |
+// | | | | | | | |    |0,0|1,0|2,0|3,0|4,0|5,0|6,0|
+// ---------------    -----------------------------
 
 class Field {
     var content: [[Figure]]
@@ -45,23 +47,20 @@ class Field {
     }
     
     func show() {
-        for y in 0...self.y-1 {
-            for x in 0...self.x-1 {
+        for y in 0..<self.y {
+            for x in 0..<self.x {
                 if (x <= self.x - 1) {
                     print("|", terminator:"")
                 }
-                switch content[x][self.y - y - 1] {
-                case .X:
-                    print(Figure.X, terminator:"")
-                case .O:
-                    print(Figure.O, terminator:"")
-                default:
+                if (content[x][self.y - y - 1] != Figure.empty) {
+                    print(content[x][self.y - y - 1], terminator:"")
+                } else {
                     print(" ", terminator:"")
                 }
             }
             print("|")
         }
-        for _ in 0...self.x-1 {
+        for _ in 0..<self.x {
             print("--", terminator:"")
         }
         print("-")
@@ -79,7 +78,7 @@ class Field {
     func set(x: Int, figure: Figure) -> Int{
         var y: Int = 0
         
-        for i in 0...self.y-1 {
+        for i in 0..<self.y {
             if (content[x][i] == Figure.empty) {
                 content[x][i] = figure
                 y = i
@@ -92,7 +91,7 @@ class Field {
     func remove(x: Int) {
         var y: Int = 0
         
-        for i in 0...self.y-1 {
+        for i in 0..<self.y {
             if (content[x][i] != Figure.empty) {
                 y = i
             } else {
@@ -117,25 +116,13 @@ class Field {
     }
     
     func draw() -> Bool {
-        for i in 0...self.x-1 {
+        for i in 0..<self.x {
                 if (content[i][self.y-1] == Figure.empty) {
                     return false
                 }
         }
         return true
     }
-    
-/*    func getPosition(x: Int) -> Int {
-        var y: Int = 0
-        
-        for i in 0...(self.y-1) {
-            if content[x][self.y - i - 1] != Figure.empty {
-                y = self.y - i - 1
-                break
-            }
-        }
-        return y
-    }*/
     
     func checkHorizontal(x: Int, y: Int) -> Bool {
         var sum: Int = 0
@@ -213,7 +200,7 @@ class Field {
     func won(x: Int) -> Bool {
         var y: Int = 0
         
-        for i in 0...self.y-1 {
+        for i in 0..<self.y {
             if content[x][self.y - 1 - i] != Figure.empty {
                 y = self.y - 1 - i
                 break

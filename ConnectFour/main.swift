@@ -18,7 +18,7 @@ var y: Int
 while true {
     field = Field()
     field!.show()
-    gameLoop: for i in 0...field!.getSize()-1 {
+    gameLoop: for i in 0..<field!.getSize() {
         x = players[i%2].getMove(field!)
         y = field!.set(x, figure: players[i%2].figure)
         field!.show()
