@@ -8,7 +8,7 @@
 
 import Foundation
 
-let debug: Bool = true
+let debug: Bool = false
 
 class ComputerMinMax: PlayerClass {
     var count: Int = 0
@@ -20,7 +20,7 @@ class ComputerMinMax: PlayerClass {
         
         print("\(figure) turn")
         
-        x = maximizing(field, depth: 8, alpha: Int.min, beta: Int.max)
+        x = maximizing(field, depth: 9, alpha: Int.min, beta: Int.max)
         
         if debug {
             print("Count: \(count)")
@@ -43,7 +43,7 @@ class ComputerMinMax: PlayerClass {
         }
         shuffledArray = shuffleArray(array)
         
-//        move: for i in 0..<field.getColumns() {
+        // move: for i in 0..<field.getColumns() {
         move: for i in shuffledArray {
             if (field.content[i][field.getRows()-1] == Figure.empty) {
                 y = field.set(i, figure: figure)
