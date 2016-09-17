@@ -9,11 +9,11 @@
 import Foundation
 
 class PlayerFactory {
-    class func create(playerEnum: PlayerEnum, figure: Figure) -> PlayerClass? {
+    class func create(_ playerEnum: PlayerEnum, figure: Figure) -> PlayerClass? {
         switch playerEnum {
-        case .Human: return Human(figure: figure)
-        case .ComputerRandom: return ComputerRandom(figure: figure)
-        case .ComputerMinMax: return ComputerMinMax(figure: figure)
+        case .human: return Human(figure: figure)
+        case .computerRandom: return ComputerRandom(figure: figure)
+        case .computerMinMax: return ComputerMinMax(figure: figure)
         default: print("\n> Player not existing\n"); return nil
         }
     }

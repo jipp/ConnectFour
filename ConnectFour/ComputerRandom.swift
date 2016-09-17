@@ -9,7 +9,7 @@
 import Foundation
 
 class ComputerRandom: PlayerClass {
-    override func getMove(field: Field) -> Int {
+    override func getMove(_ field: Field) -> Int {
         print("\(figure) turn")
         repeat {
             x = Int(arc4random_uniform(UInt32(field.getColumns())))

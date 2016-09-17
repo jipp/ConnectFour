@@ -9,7 +9,7 @@
 import Foundation
 
 class Human: PlayerClass {
-    override func getMove(field: Field) ->  Int {
+    override func getMove(_ field: Field) ->  Int {
         var x: Int = -1
         var input: String
         

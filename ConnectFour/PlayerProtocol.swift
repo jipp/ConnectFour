@@ -13,5 +13,5 @@ protocol PlayerProtocol {
     
     func getFigure() -> Figure
     func getOpponent() ->  Figure
-    func getMove(field: Field) -> Int
+    func getMove(_ field: Field) -> Int
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 enum PlayerEnum {
-    case Human
-    case ComputerRandom
-    case ComputerMinMax
+    case human
+    case computerRandom
+    case computerMinMax
 }

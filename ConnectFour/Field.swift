@@ -25,13 +25,13 @@ class Field {
     init() {
         self.x = 7
         self.y = 6
-        content = Array(count: self.x, repeatedValue: Array(count: self.y, repeatedValue: Figure.empty))
+        content = Array(repeating: Array(repeating: Figure.empty, count: self.y), count: self.x)
     }
     
     init(x: Int, y: Int) {
         self.x = x
         self.y = y
-        content = Array(count: self.x, repeatedValue: Array(count: self.y, repeatedValue: Figure.empty))
+        content = Array(repeating: Array(repeating: Figure.empty, count: self.y), count: self.x)
     }
     
     func getRows() -> Int {
@@ -66,7 +66,7 @@ class Field {
         print("-")
     }
     
-    func allowedMove(x: Int) -> Bool {
+    func allowedMove(_ x: Int) -> Bool {
         if (x >= 0) && (x < self.x) {
             if content[x][self.y - 1] == Figure.empty {
                 return true
@@ -75,7 +75,7 @@ class Field {
         return false
     }
     
-    func set(x: Int, figure: Figure) -> Int{
+    func set(_ x: Int, figure: Figure) -> Int{
         var y: Int = 0
         
         for i in 0..<self.y {
@@ -88,7 +88,7 @@ class Field {
         return y
     }
     
-    func remove(x: Int) {
+    func remove(_ x: Int) {
         var y: Int = 0
         
         for i in 0..<self.y {
@@ -101,11 +101,11 @@ class Field {
         remove(x, y: y)
     }
     
-    func remove(x: Int, y: Int) {
+    func remove(_ x: Int, y: Int) {
         content[x][y] = Figure.empty
     }
 
-    func getStatus(x: Int, y: Int) -> Status {
+    func getStatus(_ x: Int, y: Int) -> Status {
         if won(x, y: y) {
             return Status.won
         }
@@ -124,7 +124,7 @@ class Field {
         return true
     }
     
-    func checkHorizontal(x: Int, y: Int) -> Bool {
+    func checkHorizontal(_ x: Int, y: Int) -> Bool {
         var sum: Int = 0
 
         for i in -3...0 {
@@ -142,7 +142,7 @@ class Field {
         return false
     }
     
-    func checkVertical(x: Int, y: Int) -> Bool {
+    func checkVertical(_ x: Int, y: Int) -> Bool {
         var sum: Int = 0
 
         for i in -3...0 {
@@ -159,7 +159,7 @@ class Field {
         return false
     }
     
-    func checkSlash(x: Int, y: Int) -> Bool {
+    func checkSlash(_ x: Int, y: Int) -> Bool {
         var sum: Int = 0
         
         for i in 0...3 {
@@ -178,7 +178,7 @@ class Field {
         return false
     }
 
-    func checkBackSlash(x: Int, y: Int) -> Bool {
+    func checkBackSlash(_ x: Int, y: Int) -> Bool {
         var sum: Int = 0
         
         for i in 0...3 {
@@ -197,7 +197,7 @@ class Field {
         return false
     }
 
-    func won(x: Int) -> Bool {
+    func won(_ x: Int) -> Bool {
         var y: Int = 0
         
         for i in 0..<self.y {
@@ -210,7 +210,7 @@ class Field {
         return won(x, y: y)
     }
     
-    func won(x: Int, y: Int) -> Bool {
+    func won(_ x: Int, y: Int) -> Bool {
         if (checkHorizontal(x, y: y)) {
             return true
         }

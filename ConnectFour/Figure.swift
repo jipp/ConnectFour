@@ -9,7 +9,7 @@
 import Foundation
 
 enum Figure: Int {
-    case X = 1
-    case O = -1
+    case x = 1
+    case o = -1
     case empty = 0
 }

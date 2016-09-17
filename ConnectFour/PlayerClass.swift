@@ -21,13 +21,13 @@ class PlayerClass: PlayerProtocol {
     
     func getOpponent() -> Figure {
         switch (figure) {
-        case Figure.X: return Figure.O
-        case Figure.O: return Figure.X
+        case Figure.x: return Figure.o
+        case Figure.o: return Figure.x
         default: return Figure.empty
         }
     }
     
-    func getMove(field: Field) -> Int {
+    func getMove(_ field: Field) -> Int {
         fatalError(#function + "Must be overridden")
     }
 }

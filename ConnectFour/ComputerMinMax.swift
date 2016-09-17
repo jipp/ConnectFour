@@ -13,14 +13,14 @@ let debug: Bool = false
 class ComputerMinMax: PlayerClass {
     var count: Int = 0
     
-    override func getMove(field: Field) -> Int {
+    override func getMove(_ field: Field) -> Int {
         var x: Int = 0
         
         count = 0
         
         print("\(figure) turn")
         
-        x = maximizing(field, depth: 9, alpha: Int.min, beta: Int.max)
+        x = maximizing(field, depth: 8, alpha: Int.min, beta: Int.max)
         
         if debug {
             print("Count: \(count)")
@@ -29,13 +29,13 @@ class ComputerMinMax: PlayerClass {
         return x
     }
     
-    func maximizing(field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
+    func maximizing(_ field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
         var maxValue: Int = alpha
         var value: Int
         var x: Int = 0
         var y: Int = 0
         
-        var array = [Int](count: field.getColumns(), repeatedValue: 0)
+        var array = [Int](repeating: 0, count: field.getColumns())
         var shuffledArray: [Int]
         
         for i in 0..<field.getColumns() {
@@ -70,7 +70,7 @@ class ComputerMinMax: PlayerClass {
     }
     
     
-    func maximizing(field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
+    func maximizing(_ field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
         var maxValue: Int = Int.min
         var value: Int
         var y: Int = 0
@@ -101,7 +101,7 @@ class ComputerMinMax: PlayerClass {
         return maxValue
     }
     
-    func minimizing(field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
+    func minimizing(_ field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
         var minValue: Int = Int.max
         var value: Int
         var y: Int = 0
@@ -132,10 +132,10 @@ class ComputerMinMax: PlayerClass {
         return minValue
     }
     
-    func shuffleArray<T>(array: Array<T>) -> Array<T> {
+    func shuffleArray<T>(_ array: Array<T>) -> Array<T> {
         var a = array
         
-        for index in (1..<a.count).reverse() {
+        for index in (1..<a.count).reversed() {
             let j = Int(arc4random_uniform(UInt32(index)))
             swap(&a[index], &a[j])
         }
