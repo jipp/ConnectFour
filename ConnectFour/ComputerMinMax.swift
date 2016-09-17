@@ -13,14 +13,14 @@ let debug: Bool = false
 class ComputerMinMax: PlayerClass {
     var count: Int = 0
     
-    override func getMove(_ field: Field) -> Int {
+    override func getMove(field: Field) -> Int {
         var x: Int = 0
         
         count = 0
         
         print("\(figure) turn")
         
-        x = maximizing(field, depth: 8, alpha: Int.min, beta: Int.max)
+        x = maximizing(field: field, depth: 8, alpha: Int.min, beta: Int.max)
         
         if debug {
             print("Count: \(count)")
@@ -29,7 +29,7 @@ class ComputerMinMax: PlayerClass {
         return x
     }
     
-    func maximizing(_ field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
+    func maximizing(field: Field, depth: Int, alpha: Int, beta: Int) -> Int {
         var maxValue: Int = alpha
         var value: Int
         var x: Int = 0
@@ -41,14 +41,14 @@ class ComputerMinMax: PlayerClass {
         for i in 0..<field.getColumns() {
             array[i] = i
         }
-        shuffledArray = shuffleArray(array)
+        shuffledArray = shuffleArray(array: array)
         
         // move: for i in 0..<field.getColumns() {
         move: for i in shuffledArray {
             if (field.content[i][field.getRows()-1] == Figure.empty) {
-                y = field.set(i, figure: figure)
-                value = minimizing(field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
-                field.remove(i, y: y)
+                y = field.set(x: i, figure: figure)
+                value = minimizing(field: field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
+                field.remove(x: i, y: y)
                 if debug {
                     print(" Position: \(i, y) Value: \(value)")
                 }
@@ -70,14 +70,14 @@ class ComputerMinMax: PlayerClass {
     }
     
     
-    func maximizing(_ field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
+    func maximizing(field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
         var maxValue: Int = Int.min
         var value: Int
         var y: Int = 0
         
         count += 1
         
-        if (field.won(x)) {
+        if (field.won(x: x)) {
             return  -1 - depth
         }
         if (field.draw() || depth <= 0) {
@@ -86,9 +86,9 @@ class ComputerMinMax: PlayerClass {
         
         move: for i in 0..<field.getColumns() {
             if (field.content[i][field.getRows()-1] == Figure.empty) {
-                y = field.set(i, figure: figure)
-                value = minimizing(field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
-                field.remove(i, y: y)
+                y = field.set(x: i, figure: figure)
+                value = minimizing(field: field, x: i, depth: depth-1, alpha: maxValue, beta: beta)
+                field.remove(x: i, y: y)
                 if (value > maxValue) {
                     maxValue = value
                     if (maxValue >= beta) {
@@ -101,14 +101,14 @@ class ComputerMinMax: PlayerClass {
         return maxValue
     }
     
-    func minimizing(_ field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
+    func minimizing(field: Field, x: Int, depth: Int, alpha: Int, beta: Int) -> Int {
         var minValue: Int = Int.max
         var value: Int
         var y: Int = 0
 
         count += 1
         
-        if (field.won(x)) {
+        if (field.won(x: x)) {
             return 1 + depth
         }
         if (field.draw() || depth <= 0) {
@@ -117,9 +117,9 @@ class ComputerMinMax: PlayerClass {
         
         move: for i in 0..<field.getColumns() {
             if (field.content[i][field.getRows()-1] == Figure.empty) {
-                y = field.set(i, figure: getOpponent())
-                value = maximizing(field, x: i, depth: depth-1, alpha: alpha, beta: minValue)
-                field.remove(i, y: y)
+                y = field.set(x: i, figure: getOpponent())
+                value = maximizing(field: field, x: i, depth: depth-1, alpha: alpha, beta: minValue)
+                field.remove(x: i, y: y)
                 if (value < minValue) {
                     minValue = value
                     if (minValue <= alpha) {
@@ -132,7 +132,7 @@ class ComputerMinMax: PlayerClass {
         return minValue
     }
     
-    func shuffleArray<T>(_ array: Array<T>) -> Array<T> {
+    func shuffleArray<T>(array: Array<T>) -> Array<T> {
         var a = array
         
         for index in (1..<a.count).reversed() {

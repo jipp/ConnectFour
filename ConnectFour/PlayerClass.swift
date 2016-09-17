@@ -27,7 +27,7 @@ class PlayerClass: PlayerProtocol {
         }
     }
     
-    func getMove(_ field: Field) -> Int {
+    func getMove(field: Field) -> Int {
         fatalError(#function + "Must be overridden")
     }
 }

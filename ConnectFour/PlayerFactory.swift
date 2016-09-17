@@ -9,7 +9,7 @@
 import Foundation
 
 class PlayerFactory {
-    class func create(_ playerEnum: PlayerEnum, figure: Figure) -> PlayerClass? {
+    class func create(playerEnum: PlayerEnum, figure: Figure) -> PlayerClass? {
         switch playerEnum {
         case .human: return Human(figure: figure)
         case .computerRandom: return ComputerRandom(figure: figure)
